@@ -21,5 +21,9 @@
     "download-git-repo": "^1.1.0",
     "inquirer": "^6.2.2",
     "ora": "^3.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Aaronumen/notel-cli"
   }
 }
