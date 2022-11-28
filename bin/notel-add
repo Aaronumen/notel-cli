@@ -29,7 +29,7 @@ let question = [
   {
     name: "url",
     type: 'input',
-    message: "请输入模板地址",
+    message: "请输入github仓库名",
     validate (val) {
       if (val === '') return 'The url is required!'
       return true

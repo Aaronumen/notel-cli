@@ -1,42 +1,50 @@
 #!/usr/bin/env node
 
-const program = require('commander')
+const inquirer = require('inquirer')
 const chalk = require('chalk')
+const tplObj = require(`${__dirname}/../template`)
 const ora = require('ora')
 const download = require('download-git-repo')
-const tplObj = require(`${__dirname}/../template`)
-
-program
-  .usage('<template-name> [project-name]')
-program.parse(process.argv)
-// 当没有输入参数的时候给个提示
-if (program.args.length < 1) return program.help()
-
-// 好比 vue init webpack project-name 的命令一样，第一个参数是 webpack，第二个参数是 project-name
-let templateName = program.args[0]
-console.log('templateName: ', templateName);
-let projectName = program.args[1]
-console.log('projectName: ', projectName);
-
-// 小小校验一下参数
-if (!tplObj[templateName]) {
-  console.log(chalk.red('\n Template does not exit! \n '))
-  return
+let choices=[]
+for(let key in tplObj){
+    choices.push({name:key,value:tplObj[key]})
 }
-if (!projectName) {
-  console.log(chalk.red('\n Project should not be empty! \n '))
-  return
-}
-
-url = tplObj[templateName]
-
-console.log(chalk.white('\n Start generating... \n'))
-// 出现加载图标
-const spinner = ora("Downloading...");
-spinner.start();
-// 执行下载方法并传入参数
+new inquirer.prompt([
+  {
+    name: "templateUrl",
+    // 多选交互功能 checkbox
+    // 单选将这里修改为 list 即可
+    type: "list",
+    message: "Check the template needed for your project:",
+    choices
+  },
+  {
+    name: "projectName",
+    type: 'input',
+    message: "请输入模板名称",
+    validate (val) {
+      if (val === '') {
+        return 'Name is required!'
+      } else if (tplObj[val]) {
+        return 'Template has already existed!'
+      } else {
+        return true
+      }
+    }
+  },
+]).then((data) => {
+    let {templateUrl,projectName}=data
+  console.log(chalk.white('\n Start generating... \n'))
+    // 出现加载图标
+  const spinner = ora("Get template ...");
+  setTimeout(() => {
+	spinner.color = 'yellow';
+	spinner.text = 'Downloading ...';
+}, 1000);
+  spinner.start();
+  // 执行下载方法并传入参数
 download (
-  url,
+  templateUrl,
   projectName,
   err => {
     if (err) {
@@ -51,3 +59,4 @@ download (
     console.log(`\n    cd ${projectName} \n`)
   }
 )
+});

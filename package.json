@@ -13,7 +13,8 @@
     "notel-add": "bin/notel-add",
     "notel-delete": "bin/notel-delete",
     "notel-list": "bin/notel-list",
-    "notel-init": "bin/notel-init"
+    "notel-init": "bin/notel-init",
+    "notel-test": "bin/notel-test"
   },
   "dependencies": {
     "chalk": "^2.4.2",
