@@ -3,7 +3,7 @@
  - notel add templateTypeName projectUrl -- 添加模板
  - notel delete -- 删除模板
  - notel list -- 查看所有模板
- - notel init templateTypeName projectName -- 初始化项目
+ - notel init -- 初始化项目
 
 ### 目前模板
  - react-webpack
