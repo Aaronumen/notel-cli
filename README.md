@@ -1,6 +1,6 @@
 ### 自用的模拟 vue-cli 脚手架
 ### 常用命令
- - notel add templateTypeName projectUrl -- 添加模板
+ - notel add -- 添加模板
  - notel delete -- 删除模板
  - notel list -- 查看所有模板
  - notel init -- 初始化项目
