@@ -4,10 +4,7 @@
  - notel delete -- 删除模板
  - notel list -- 查看所有模板
  - notel init -- 初始化项目
-
-### 目前模板
- - react-webpack
- - vue3-vite-mobile
+ - notel v -- 查看当前版本
 
 ### npm 发包命令
  - npm version patch 1.0.0 -> 1.0.1 --小版本升级补丁

@@ -1,0 +1,5 @@
+const fs = require('fs')
+// 读取根目录下的 template.json
+const package = require(`${__dirname}/../package.json`)
+const version=package.version
+console.log('version:', version);
